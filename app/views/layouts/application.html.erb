@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BlogApp</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div style="float:right; width: 600px;">
+    <% if current_user %>
+    Logged in as <strong><%= current_user.username %></strong> |
+      <%= link_to "Logout", logout_path %>
+    <% else %>
+      <%= link_to "Sign up", new_user_path %> |
+      <%= link_to "Login", login_path %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= notice %>
+  </div>
+  <h1>Railspress</h1>
+  <%= yield %>
+</body>
+</html>
