@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_filter :check_login, :except => [:show, :add_comment]
+  
   def new
     @post = current_user.posts.new
   end
@@ -44,8 +46,20 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
+    @comment = Comment.new({:post => @post})
     render :action => "show"
   end
+
+  def add_comment
+    @post = Post.find(params[:id])
+    @post.comments.create(params[:comment])
+    if @post.save
+      redirect_to post_path(@post), :notice => "Comment Added"
+    else
+      redirect_to post_path(@post), :notice => "Adding comment failed"
+    end
+  end
+
 
 end

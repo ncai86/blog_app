@@ -1,11 +1,18 @@
 BlogApp::Application.routes.draw do
 
 
-  root :to => "sessions#new"
+  root :to => "posts#index"
 
   resources :users
   resources :sessions
-  resources :posts
+  resources :posts do
+    member do
+      post :add_comment
+    end
+  end
+
+  resources :comments
+
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
 

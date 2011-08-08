@@ -14,5 +14,31 @@
 <li><b>Title</b><br> <%= @post.title %> </li>
 <li><b>Content</b><br> <%= @post.content %> </li>
 
-<%= link_to "Edit", edit_post_path %>
-<%= link_to "Back", posts_path %>
+<% if logged_in? %>
+  <%= link_to "Edit", edit_post_path %>
+  <%= link_to "Back", posts_path %>
+<% end %>
+
+<br><br>
+
+<h2>Comments</h2>
+<% form_for @comment, :url => add_comment_post_path(@post) do |f| %>
+  <p>
+    <%= f.label :commenter_name %>
+    <%= f.text_field :commenter_name %>
+  </p>
+
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <%= f.submit%>
+<% end %>
+
+<ol>
+  <% @post.comments.order("created_at desc").each do |comment| %>
+    <h3><%= comment.commenter_name %></h3>
+    <p><%= comment.body %></p>
+  <% end %>
+</ol>
+
