@@ -11,5 +11,11 @@ class ApplicationController < ActionController::Base
     current_user != nil
   end
 
+  def check_login
+    if !logged_in?
+      redirect_to new_session_path
+    end
+  end
+
 end
 
