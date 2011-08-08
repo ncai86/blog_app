@@ -1,0 +1,18 @@
+<h2>Post</h2>
+
+<% if @post.errors.any? %>
+    <div class="error_messages">
+      <h2>oops!</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<li><b>Title</b><br> <%= @post.title %> </li>
+<li><b>Content</b><br> <%= @post.content %> </li>
+
+<%= link_to "Edit", edit_post_path %>
+<%= link_to "Back", posts_path %>
