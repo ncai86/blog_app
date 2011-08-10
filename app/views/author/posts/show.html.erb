@@ -15,8 +15,8 @@
 <li><b>Content</b><br> <%= @post.content %> </li>
 
 <% if logged_in? %>
-  <%= link_to "Edit", edit_author_post_path %>
-  <%= link_to "Back", author_posts_path %>
+  <%= link_to "Edit", edit_post_path %>
+  <%= link_to "Back", posts_path %>
 <% end %>
 
 <br><br>

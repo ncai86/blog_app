@@ -1,13 +1,4 @@
-<h2>My Posts</h2>
-<ol>
-  <% @posts.each do |post| %>
-
-
-    <li><%= link_to post.title, post %> <%= link_to "edit", edit_post_path(post) %>
-      <%= form_for post, :html => {:method => :delete} do |p| %>
-      <%= p.submit "Delete" %></li>
-    <% end %>
-  <% end %>
-</ol>
-
-<%= link_to "New Post", new_post_path %>
+<% @posts.each do |post| %>
+  <h2><%= link_to post.title, post %> by <%= post.user.name %></h2>
+  <p><%= post.content %></p>
+<% end %>

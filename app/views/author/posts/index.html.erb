@@ -1,0 +1,13 @@
+<h2>My Posts</h2>
+<ol>
+  <% @posts.each do |post| %>
+
+
+    <li><%= link_to post.title, post %> <%= link_to "edit", edit_author_post_path(post) %>
+      <%= form_for post, :html => {:method => :delete} do |p| %>
+      <%= p.submit "Delete" %></li>
+    <% end %>
+  <% end %>
+</ol>
+
+<%= link_to "New Post", new_author_post_path %>

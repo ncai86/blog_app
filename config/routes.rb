@@ -5,13 +5,16 @@ BlogApp::Application.routes.draw do
 
   resources :users
   resources :sessions
-  resources :posts do
+  resources :posts, :only => [:index, :show] do
     member do
       post :add_comment
     end
   end
 
-  resources :comments
+  
+  namespace :author do
+    resources :posts
+  end
 
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
