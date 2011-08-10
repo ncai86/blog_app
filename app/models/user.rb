@@ -8,8 +8,10 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :username, :email
   validates_presence_of :password, :on => :create
   validates_uniqueness_of :username, :email
+  validates_length_of :username, :minimum => 5, :maximum => 10
+  validates_length_of :password, :minimum => 5, :maximum => 10
 
-
+  
   def encrypt_password
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt

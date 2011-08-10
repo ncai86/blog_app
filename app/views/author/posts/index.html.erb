@@ -4,8 +4,10 @@
 
 
     <li><%= link_to post.title, post %> <%= link_to "edit", edit_author_post_path(post) %>
-      <%= form_for post, :html => {:method => :delete} do |p| %>
-      <%= p.submit "Delete" %></li>
+      <%= link_to 'Delete', [:author, post], :confirm => 'are you sure?', :method => :delete %>
+      <%= form_for [:author, post], :html => {:method => :delete} do %>
+      <%= submit_tag "Delete" %></li>
+    
     <% end %>
   <% end %>
 </ol>

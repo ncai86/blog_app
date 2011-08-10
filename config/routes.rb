@@ -1,6 +1,16 @@
 BlogApp::Application.routes.draw do
 
 
+  get "newcontroller/new"
+
+  get "newcontroller/create"
+
+  get "newcontroller/index"
+
+  get "newcontroller/edit"
+
+  get "newcontroller/destroy"
+
   root :to => "posts#index"
 
   resources :users

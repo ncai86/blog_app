@@ -8,7 +8,7 @@ class Author::PostsController < ApplicationController
   def create
     @post = current_user.posts.new(params[:post])
     if @post.save
-      redirect_to posts_path, :notice => "Blog Entry Created!"
+      redirect_to author_posts_path, :notice => "Blog Entry Created!"
     else
       render :new
     end
@@ -27,14 +27,13 @@ class Author::PostsController < ApplicationController
 
   def edit
     @post = current_user.posts.find(params[:id])
-
   end
 
   def destroy
     @post = current_user.posts.find(params[:id])
 
     if @post.destroy
-      redirect_to posts_path, :notice => "Blog Entry Deleted"
+      redirect_to author_posts_path, :notice => "Blog Entry Deleted"
     else
       redirect_to posts_path, :notice => "Delete Failed"
     end
@@ -42,7 +41,7 @@ class Author::PostsController < ApplicationController
   end
 
   def index
-    @posts = current_user.posts.all
+    @posts = current_user.posts.all 
   end
 
 end
